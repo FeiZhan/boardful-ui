@@ -1,0 +1,18 @@
+.boardful_arrow > #triangle {
+	position: absolute;
+
+	border-bottom: 35px solid Blue;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+}
+.boardful_arrow > #tail {
+	position: absolute;
+	top: 35px;
+}
+.boardful_arrow > #tail > div {
+	height: 45px;
+	width: 100px;
+	position: relative;
+	margin-top: 35px;
+	background: Blue;
+}

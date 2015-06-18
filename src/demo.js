@@ -4,6 +4,7 @@ $(function() {
 	BOARDFUL.ui.Icon("icon");
 	BOARDFUL.ui.Button("button");
 	BOARDFUL.ui.List("list");
-	*/
 	BOARDFUL.ui.Deck("deck");
+	*/
+	BOARDFUL.ui.Arrow("arrow");
 });
