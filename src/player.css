@@ -1,0 +1,23 @@
+.boardful_player {
+	height: 30%;
+	width: 90%;
+	position: absolute;
+	top: 60%;
+	left: 5%;
+
+}
+.boardful_player > .head {
+	height: 100%;
+	width: 20%;
+	position: absolute;
+	top: 0%;
+	right: 0%;
+
+	border: thin solid Grey;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.boardful_player > .head > img {
+	min-width: 100%;
+	min-height: 100%;
+}
