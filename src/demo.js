@@ -1,10 +1,11 @@
 $(function() {
 	/*
-	BOARDFUL.ui.Card("card");
-	BOARDFUL.ui.Icon("icon");
-	BOARDFUL.ui.Button("button");
-	BOARDFUL.ui.List("list");
-	BOARDFUL.ui.Deck("deck");
+	BOARDFUL.ui.Icon("test");
+	BOARDFUL.ui.Button("test");
+	BOARDFUL.ui.List("test");
+	BOARDFUL.ui.Deck("test");
+	BOARDFUL.ui.Arrow("test");
 	*/
-	BOARDFUL.ui.Arrow("arrow");
+	var test = new BOARDFUL.ui.Card("test");
+	var table = new BOARDFUL.ui.Table("table");
 });
