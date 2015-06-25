@@ -19,6 +19,10 @@ BOARDFUL.ui.Card.prototype.setTestOptions = function () {
 	this.options.bottomright = this.options.bottomright || "4";
 	this.options.hoverShowCorner = this.options.hoverShowCorner || true;
 	this.options.draggable = this.options.draggable || true;
+	this.options.flip = this.options.flip || false;
+	this.options.disable = this.options.disable || false;
+	this.options.hoverToDisable = this.options.hoverToDisable || false;
+	this.options.clickToFlip = this.options.clickToFlip || true;
 };
 BOARDFUL.ui.Card.prototype.onLoad = function () {
 	this.setTestOptions();
@@ -57,7 +61,6 @@ BOARDFUL.ui.Card.prototype.onLoad = function () {
 	if (undefined !== bottomright) {
 		$("#" + this.canvas + " .bottomright span").html(bottomright);
 	}
-
 	if (true === this.options.hoverShowCorner) {
 		$("#" + this.canvas).hover(function () {
 			$("#" + that.canvas + " .value").addClass("visible");
@@ -90,6 +93,24 @@ BOARDFUL.ui.Card.prototype.onLoad = function () {
 				$(this).removeClass("flip");
 				$(this).removeClass("dragging");
 			}
+		});
+	}
+	if (true === this.options.flip) {
+		$("#" + this.canvas).addClass("flip");
+	}
+	if (true === this.options.disable) {
+		$("#" + this.canvas).addClass("disable");
+	}
+	if (true === this.options.hoverToDisable) {
+		$("#" + this.canvas).hover(function () {
+			$("#" + that.canvas).addClass("disable");
+		}, function () {
+			$("#" + that.canvas).removeClass("disable");
+		});
+	}
+	if (true === this.options.clickToFlip) {
+		$("#" + this.canvas).click(function () {
+			$("#" + that.canvas).toggleClass("flip");
 		});
 	}
 };

@@ -109,6 +109,12 @@
 .boardful_card.flip > .back {
 	transform: rotateY(0);
 }
+.boardful_card.flip > .text {
+	visibility: hidden;
+}
+.boardful_card.flip > .value {
+	visibility: hidden;
+}
 .boardful_card.disable > .fog {
 	width: 100%;
 	height: 100%;
