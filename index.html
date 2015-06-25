@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
+		<script src="src/object.js"></script>
 		<link rel="stylesheet" type="text/css" href="src/card.css" />
 		<script src="src/card.js"></script>
 		<link rel="stylesheet" type="text/css" href="src/icon.css" />
@@ -31,8 +32,15 @@
 		<script src="src/ring.js"></script>
 		<link rel="stylesheet" type="text/css" href="src/reminder.css" />
 		<script src="src/reminder.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/message.css" />
-		<script src="src/message.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/messagebox.css" />
+		<script src="src/messagebox.js"></script>
+		<style>
+#test {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+}
+		</style>
 	</head>
 
 	<body>
@@ -41,7 +49,7 @@
 	</body>
 	<script>
 $(function() {
-	var test = new BOARDFUL.ui.MessageBox("test");
+	window.test = new BOARDFUL.ui.Card("test");
 	//var table = new BOARDFUL.ui.Table("table");
 });
 	</script>

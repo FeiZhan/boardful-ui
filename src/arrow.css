@@ -1,3 +1,8 @@
+.boardful_arrow {
+	position: absolute;
+	top: 30%;
+	left: 30%;
+}
 .boardful_arrow > #triangle {
 	position: absolute;
 
