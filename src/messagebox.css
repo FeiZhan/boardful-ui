@@ -1,0 +1,25 @@
+.boardful_messagebox {
+	height: 50%;
+	width: 30%;
+	position: absolute;
+	top: 5%;
+	left: 60%;
+}
+.boardful_messagebox > .message {
+	max-height: 100%;
+	width: 100%;
+	position: relative;
+
+	border: thin solid Grey;
+	float: left;
+	overflow: hidden;
+	text-align: center;
+
+	-webkit-transition: max-height 1s ease-in-out;
+	-moz-transition: max-height 1s ease-in-out;
+	-o-transition: max-height 1s ease-in-out;
+	transition: max-height 1s ease-in-out;
+}
+.boardful_messagebox > .message.close {
+	max-height: 0;
+}
