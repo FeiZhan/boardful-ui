@@ -7,7 +7,7 @@ BOARDFUL.ui.Card = function (canvas, options) {
 	options.htmlFile = options.htmlFile || "src/card.html";
 	this.init(canvas, options);
 };
-BOARDFUL.ui.Card.prototype = BOARDFUL.ui.Object.prototype;
+BOARDFUL.ui.Card.prototype = new BOARDFUL.ui.Object;
 BOARDFUL.ui.Card.prototype.setTestOptions = function () {
 	this.options.height = this.options.height || "120px";
 	this.options.width = this.options.width || "90px";

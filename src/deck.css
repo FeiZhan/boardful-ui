@@ -4,14 +4,31 @@
 	border: thin solid Grey;
 	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 
-	overflow: hidden;
 	perspective: 800px;
-	-webkit-perspective: 800px;
 }
 .boardful_deck > div {
+	height: 100%;
+	width: 50%;
+	position: absolute;
+}
+.boardful_deck > .left {
+	left: 0;
+}
+.boardful_deck > .left > div {
+	float: right;
+}
+.boardful_deck > .right {
+	right: 0;
 	float: left;
 }
-.boardful_deck.compact > div {
+.boardful_deck > .right > div {
+	float: left;
+}
+.boardful_deck > div > div {
+	position: relative;
+	margin-right: 5px;
+}
+.boardful_deck.compact > div > div {
 	transform: rotateY(-60deg);
-	margin: 0 -10px;
+	margin: 0 -5px;
 }

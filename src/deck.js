@@ -8,17 +8,12 @@ BOARDFUL.ui.Deck = function (canvas, options) {
 	this.card_num = 0;
 	this.init(canvas, options);
 };
-BOARDFUL.ui.Deck.prototype = BOARDFUL.ui.Object.prototype;
+BOARDFUL.ui.Deck.prototype = new BOARDFUL.ui.Object;
 BOARDFUL.ui.Deck.prototype.setTestOptions = function () {
 	this.options.height = this.options.height || "20%";
-	this.options.width = this.options.width || "40%";
-	for (var i = 0; i < 2; ++ i) {
-		$("#" + this.canvas).append('<div id="' + this.card_num + '"></div>');
-		new BOARDFUL.ui.Card(this.card_num);
-		++ this.card_num;
-	}
+	this.options.width = this.options.width || "70%";
 };
-BOARDFUL.ui.Deck.prototype.onLaoad = function () {
+BOARDFUL.ui.Deck.prototype.onLoad = function () {
 	this.setTestOptions();
 	var that = this;
 	if (undefined !== this.options.height) {
@@ -27,13 +22,32 @@ BOARDFUL.ui.Deck.prototype.onLaoad = function () {
 	if (undefined !== this.options.width) {
 		$("#" + this.canvas).css("width", this.options.width);
 	}
-	/*setInterval(function () {
-		that.card_num = $("#" + canvas + " div").length;
-		if (that.card_num >= 5) {
-			$("#" + canvas).addClass("compact");
-		}
-		else {
-			$("#" + canvas).removeClass("compact");
-		}
-	}, 1000);*/
+};
+BOARDFUL.ui.Deck.prototype.adjust = function (num) {
+	while ($("#" + this.canvas + " > .left > div").length > $("#" + this.canvas + " > .right > div").length + 1) {
+		var element = $("#" + this.canvas + " > .left :first-child").detach();
+		$("#" + this.canvas + " > .right").append(element);
+	}
+	while ($("#" + this.canvas + " > .right > div").length > $("#" + this.canvas + " > .left > div").length + 1) {
+		var element = $("#" + this.canvas + " > .right :first-child").detach();
+		$("#" + this.canvas + " > .left").append(element);
+	}
+	this.card_num = $("#" + this.canvas + " > div > div").length;
+	if (this.card_num >= 10) {
+		$("#" + this.canvas).addClass("compact");
+	}
+	else {
+		$("#" + this.canvas).removeClass("compact");
+	}
+};
+BOARDFUL.ui.Deck.prototype.addCards = function (num) {
+	for (var i = 0; i < num; ++ i) {
+		$("#" + this.canvas + " .left").append('<div id="' + this.card_num + '"></div>');
+		var card = new BOARDFUL.ui.Card(this.card_num, {
+			height: "100%",
+			width: "20%"
+		});
+		++ this.card_num;
+	}
+	this.adjust();
 };
