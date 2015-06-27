@@ -5,7 +5,7 @@
 
 	border: thin solid Grey;
 }
-.boardful_list > #names {
+.boardful_list > .names {
 	height: 100%;
 	width: 40%;
 	position: absolute;
@@ -15,17 +15,17 @@
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
-.boardful_list > #names > div {
+.boardful_list > .names > div {
 	width: 100%;
 	position: relative;
 
 	border-bottom: thin solid Silver;
 	text-align: center;
 }
-.boardful_list > #names > #title {
+.boardful_list > .names > .title {
 	font-size: x-large;
 }
-.boardful_list > #names > .item {
+.boardful_list > .names > .item {
 	width: 90%;
 
 	display: block;
@@ -35,14 +35,14 @@
 	cursor: pointer;
 }
 
-.boardful_list > #preview {
+.boardful_list > .preview {
 	height: 100%;
 	width: 60%;
 	position: absolute;
 	top: 0;
 	left: 40%;
 }
-.boardful_list > #preview > img {
+.boardful_list > .preview > img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;

@@ -4,7 +4,7 @@ BOARDFUL.ui = BOARDFUL.ui || {};
 BOARDFUL.ui.Card = function (canvas, options) {
 	options = options || {};
 	options.className = options.className || "boardful_card";
-	options.htmlFile = options.htmlFile || "src/card.html";
+	options.htmlFile = options.htmlFile || "src/board/card.html";
 	this.init(canvas, options);
 };
 BOARDFUL.ui.Card.prototype = new BOARDFUL.ui.Object;

@@ -7,31 +7,31 @@
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-		<script src="src/object.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/card.css" />
-		<script src="src/card.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/icon.css" />
-		<script src="src/icon.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/list.css" />
-		<script src="src/list.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/deck.css" />
-		<script src="src/deck.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/arrow.css" />
-		<script src="src/arrow.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/table.css" />
-		<script src="src/table.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/player.css" />
-		<script src="src/player.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/value_change.css" />
-		<script src="src/value_change.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/explosion.css" />
-		<script src="src/explosion.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/ring.css" />
-		<script src="src/ring.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/reminder.css" />
-		<script src="src/reminder.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/messagebox.css" />
-		<script src="src/messagebox.js"></script>
+		<script src="src/board/object.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/card.css" />
+		<script src="src/board/card.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/icon.css" />
+		<script src="src/board/icon.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/list.css" />
+		<script src="src/board/list.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/deck.css" />
+		<script src="src/board/deck.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/arrow.css" />
+		<script src="src/board/arrow.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/table.css" />
+		<script src="src/board/table.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/player.css" />
+		<script src="src/board/player.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/value_change.css" />
+		<script src="src/board/value_change.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/animation/explosion.css" />
+		<script src="src/animation/explosion.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/animation/ring.css" />
+		<script src="src/animation/ring.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/reminder.css" />
+		<script src="src/board/reminder.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/board/messagebox.css" />
+		<script src="src/board/messagebox.js"></script>
 		<style>
 #test {
 	position: absolute;
@@ -47,11 +47,27 @@
 	</body>
 	<script>
 $(function() {
-	var test = new BOARDFUL.ui.Deck("test");
+	var test = new BOARDFUL.ui.Player("test");
 	//var table = new BOARDFUL.ui.Table("table");
 	setTimeout(function () {
-		test.addCards(7);
+		//test.addCards(7);
+		/*test.addItems([{
+			text: "Club Ace",
+			image: "resources/1.png"
+		}, {
+			text: "Spade Ace",
+			image: "resources/2.png"
+		}, {
+			text: "Heart Ace",
+			image: "resources/3.png"
+		}, {
+			text: "Diamond Ace",
+			image: "resources/4.png"
+		}]);*/
 	}, 300);
+	setInterval(function () {
+		//test.addMessage(new Date());
+	}, 1000);
 });
 	</script>
 </html>

@@ -4,7 +4,7 @@ BOARDFUL.ui = BOARDFUL.ui || {};
 BOARDFUL.ui.Deck = function (canvas, options) {
 	options = options || {};
 	options.className = options.className || "boardful_deck";
-	options.htmlFile = options.htmlFile || "src/deck.html";
+	options.htmlFile = options.htmlFile || "src/board/deck.html";
 	this.card_num = 0;
 	this.init(canvas, options);
 };

@@ -1,10 +1,14 @@
 .boardful_card {
+	height: 120px;
+	width: 90px;
 	position: absolute;
 
 	border: thin solid Grey;
 	border-radius: 10px;
 	box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.4);
 	cursor: grab;
+	cursor: -webkit-grab;
+	cursor:-moz-grab;
 	transition: transform 1s;
 }
 .boardful_card > .face {

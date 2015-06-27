@@ -4,7 +4,6 @@
 	position: absolute;
 	top: 60%;
 	left: 5%;
-
 }
 .boardful_player > .head {
 	height: 100%;
@@ -18,6 +17,6 @@
 	overflow: hidden;
 }
 .boardful_player > .head > img {
-	min-width: 100%;
-	min-height: 100%;
+	width: 100%;
+	height: 100%;
 }
