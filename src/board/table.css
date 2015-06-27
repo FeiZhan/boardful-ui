@@ -5,10 +5,8 @@
 	top: 50%;
 	left: 10%;
 
-	border-radius: 10px 10px 10px 10px;
-	-moz-border-radius: 10px 10px 10px 10px;
-	-webkit-border-radius: 10px 10px 10px 10px;
 	border: 0px solid #000000;
+	border-radius: 10px 10px 10px 10px;
 
 	background: #cedbe9; /* Old browsers */
 	background: -moz-linear-gradient(-45deg,  #cedbe9 0%, #aac5de 17%, #6199c7 50%, #3a84c3 51%, #419ad6 59%, #4bb8f0 71%, #3a8bc2 84%, #26558b 100%); /* FF3.6+ */

@@ -5,10 +5,7 @@
 	top: 60%;
 	left: 10%;
 
-	-webkit-transition: opacity 3s ease-in-out;
-	-moz-transition: opacity 3s ease-in-out;
-	-ms-transition: opacity 3s ease-in-out;
-	-o-transition: opacity 3s ease-in-out;
+	transition: opacity 3s ease-in-out;
 }
 .boardful_reminder:hover {
 	opacity: 1;

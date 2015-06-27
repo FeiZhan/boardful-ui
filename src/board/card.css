@@ -103,6 +103,8 @@
 	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 
 	cursor: grabbing;
+	cursor: -webkit-grabbing;
+	cursor:-moz-grabbing;
 }
 .boardful_card.flip {
 	transform: rotateY(-180deg);

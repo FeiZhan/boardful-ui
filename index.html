@@ -7,31 +7,8 @@
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-		<script src="src/board/object.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/card.css" />
-		<script src="src/board/card.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/icon.css" />
-		<script src="src/board/icon.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/list.css" />
-		<script src="src/board/list.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/deck.css" />
-		<script src="src/board/deck.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/arrow.css" />
-		<script src="src/board/arrow.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/table.css" />
-		<script src="src/board/table.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/player.css" />
-		<script src="src/board/player.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/value_change.css" />
-		<script src="src/board/value_change.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/animation/explosion.css" />
-		<script src="src/animation/explosion.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/animation/ring.css" />
-		<script src="src/animation/ring.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/reminder.css" />
-		<script src="src/board/reminder.js"></script>
-		<link rel="stylesheet" type="text/css" href="src/board/messagebox.css" />
-		<script src="src/board/messagebox.js"></script>
+		<link rel="stylesheet" type="text/css" href="build/boardful-ui.css" />
+		<script src="build/boardful-ui.js"></script>
 		<style>
 #test {
 	position: absolute;
@@ -47,7 +24,7 @@
 	</body>
 	<script>
 $(function() {
-	var test = new BOARDFUL.ui.Player("test");
+	var test = new BOARDFUL.ui.ValueChange("test");
 	//var table = new BOARDFUL.ui.Table("table");
 	setTimeout(function () {
 		//test.addCards(7);
