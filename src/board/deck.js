@@ -1,26 +1,26 @@
 var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
 
-BOARDFUL.ui.Deck = function (canvas, options) {
-	options = options || {};
-	options.className = options.className || "boardful_deck";
-	options.htmlFile = options.htmlFile || "src/board/deck.html";
+BOARDFUL.ui.Deck = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_deck";
+	config.htmlFile = config.htmlFile || "src/board/deck.html";
 	this.card_num = 0;
-	this.init(canvas, options);
+	this.init(canvas, config);
 };
 BOARDFUL.ui.Deck.prototype = new BOARDFUL.ui.Object;
-BOARDFUL.ui.Deck.prototype.setTestOptions = function () {
-	this.options.height = this.options.height || "20%";
-	this.options.width = this.options.width || "70%";
+BOARDFUL.ui.Deck.prototype.setTestconfig = function () {
+	this.config.height = this.config.height || "20%";
+	this.config.width = this.config.width || "70%";
 };
 BOARDFUL.ui.Deck.prototype.onLoad = function () {
-	this.setTestOptions();
+	this.setTestconfig();
 	var that = this;
-	if (undefined !== this.options.height) {
-		$("#" + this.canvas).css("height", this.options.height);
+	if (undefined !== this.config.height) {
+		$("#" + this.canvas).css("height", this.config.height);
 	}
-	if (undefined !== this.options.width) {
-		$("#" + this.canvas).css("width", this.options.width);
+	if (undefined !== this.config.width) {
+		$("#" + this.canvas).css("width", this.config.width);
 	}
 };
 BOARDFUL.ui.Deck.prototype.adjust = function (num) {

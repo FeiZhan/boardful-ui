@@ -1,26 +1,26 @@
 var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
 
-BOARDFUL.ui.Table = function (canvas, options) {
-	options = options || {};
-	options.className = options.className || "boardful_table";
-	options.htmlFile = options.htmlFile || "src/board/table.html";
-	this.init(canvas, options);
+BOARDFUL.ui.Table = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_table";
+	config.htmlFile = config.htmlFile || "src/board/table.html";
+	this.init(canvas, config);
 };
 BOARDFUL.ui.Table.prototype = new BOARDFUL.ui.Object;
-BOARDFUL.ui.Table.prototype.setTestOptions = function () {
-	this.options.droppable = this.options.droppable || true;
+BOARDFUL.ui.Table.prototype.setTestconfig = function () {
+	this.config.droppable = this.config.droppable || true;
 };
 BOARDFUL.ui.Table.prototype.onLoad = function () {
-	this.setTestOptions();
+	this.setTestconfig();
 	var that = this;
-	if (undefined !== this.options.height) {
-		$("#" + this.canvas).css("height", this.options.height);
+	if (undefined !== this.config.height) {
+		$("#" + this.canvas).css("height", this.config.height);
 	}
-	if (undefined !== this.options.width) {
-		$("#" + this.canvas).css("width", this.options.width);
+	if (undefined !== this.config.width) {
+		$("#" + this.canvas).css("width", this.config.width);
 	}
-	if (true === this.options.droppable) {
+	if (true === this.config.droppable) {
 		$(".boardful_table").droppable({
 			drop: function(event, ui) {
 				$(this).html("Dropped!");

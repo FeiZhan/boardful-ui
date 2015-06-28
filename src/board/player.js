@@ -1,23 +1,23 @@
 var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
 
-BOARDFUL.ui.Player = function (canvas, options) {
-	options = options || {};
-	options.className = options.className || "boardful_player";
-	options.htmlFile = options.htmlFile || "src/board/player.html";
-	this.init(canvas, options);
+BOARDFUL.ui.Player = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_player";
+	config.htmlFile = config.htmlFile || "src/board/player.html";
+	this.init(canvas, config);
 };
 BOARDFUL.ui.Player.prototype = new BOARDFUL.ui.Object;
-BOARDFUL.ui.Player.prototype.setTestOptions = function () {
+BOARDFUL.ui.Player.prototype.setTestconfig = function () {
 };
 BOARDFUL.ui.Player.prototype.onLoad = function () {
-	this.setTestOptions();
+	this.setTestconfig();
 	var that = this;
-	if (undefined !== this.options.height) {
-		$("#" + this.canvas).css("height", this.options.height);
+	if (undefined !== this.config.height) {
+		$("#" + this.canvas).css("height", this.config.height);
 	}
-	if (undefined !== this.options.width) {
-		$("#" + this.canvas).css("width", this.options.width);
+	if (undefined !== this.config.width) {
+		$("#" + this.canvas).css("width", this.config.width);
 	}
 	var deck = new BOARDFUL.ui.Deck("player_deck", {
 		height: "100%"

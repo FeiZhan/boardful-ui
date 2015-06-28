@@ -1,26 +1,26 @@
 var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
 
-BOARDFUL.ui.Reminder = function (canvas, options) {
-	options = options || {};
-	options.className = options.className || "boardful_reminder";
-	options.htmlFile = options.htmlFile || "src/board/reminder.html";
-	this.init(canvas, options);
+BOARDFUL.ui.Reminder = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_reminder";
+	config.htmlFile = config.htmlFile || "src/board/reminder.html";
+	this.init(canvas, config);
 };
 BOARDFUL.ui.Reminder.prototype = new BOARDFUL.ui.Object;
-BOARDFUL.ui.Reminder.prototype.setTestOptions = function () {
-	this.options.text = this.options.text || "test test test!!!";
+BOARDFUL.ui.Reminder.prototype.setTestconfig = function () {
+	this.config.text = this.config.text || "test test test!!!";
 };
 BOARDFUL.ui.Reminder.prototype.onLoad = function () {
-	this.setTestOptions();
+	this.setTestconfig();
 	var that = this;
-	if (undefined !== this.options.height) {
-		$("#" + this.canvas).css("height", this.options.height);
+	if (undefined !== this.config.height) {
+		$("#" + this.canvas).css("height", this.config.height);
 	}
-	if (undefined !== this.options.width) {
-		$("#" + this.canvas).css("width", this.options.width);
+	if (undefined !== this.config.width) {
+		$("#" + this.canvas).css("width", this.config.width);
 	}
-	$("#" + this.canvas + " > span").html(this.options.text);
+	$("#" + this.canvas + " > span").html(this.config.text);
 	setTimeout(function () {
 		$("#" + that.canvas).css({
 			opacity: 0

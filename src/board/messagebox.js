@@ -1,25 +1,25 @@
 var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
 
-BOARDFUL.ui.MessageBox = function (canvas, options) {
-	options = options || {};
-	options.className = options.className || "boardful_messagebox";
-	options.htmlFile = options.htmlFile || "src/board/messagebox.html";
-	this.init(canvas, options);
+BOARDFUL.ui.MessageBox = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_messagebox";
+	config.htmlFile = config.htmlFile || "src/board/messagebox.html";
+	this.init(canvas, config);
 };
 BOARDFUL.ui.MessageBox.prototype = new BOARDFUL.ui.Object;
-BOARDFUL.ui.MessageBox.prototype.setTestOptions = function () {
-	this.options.height = this.options.height || "50%";
-	this.options.width = this.options.width || "30%";
+BOARDFUL.ui.MessageBox.prototype.setTestconfig = function () {
+	this.config.height = this.config.height || "50%";
+	this.config.width = this.config.width || "30%";
 };
 BOARDFUL.ui.MessageBox.prototype.onLoad = function () {
-	this.setTestOptions();
+	this.setTestconfig();
 	var that = this;
-	if (undefined !== this.options.height) {
-		$("#" + this.canvas).css("height", this.options.height);
+	if (undefined !== this.config.height) {
+		$("#" + this.canvas).css("height", this.config.height);
 	}
-	if (undefined !== this.options.width) {
-		$("#" + this.canvas).css("width", this.options.width);
+	if (undefined !== this.config.width) {
+		$("#" + this.canvas).css("width", this.config.width);
 	}
 };
 BOARDFUL.ui.MessageBox.prototype.addMessage = function (message) {
