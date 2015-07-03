@@ -15,14 +15,14 @@ BOARDFUL.ui.Reminder.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
 	if (undefined !== this.config.height) {
-		$("#" + this.canvas).css("height", this.config.height);
+		$(this.canvas).css("height", this.config.height);
 	}
 	if (undefined !== this.config.width) {
-		$("#" + this.canvas).css("width", this.config.width);
+		$(this.canvas).css("width", this.config.width);
 	}
-	$("#" + this.canvas + " > span").html(this.config.text);
+	$(this.canvas + " > span").html(this.config.text);
 	setTimeout(function () {
-		$("#" + that.canvas).css({
+		$(that.canvas).css({
 			opacity: 0
 		});
 	}, 2000);

@@ -6,14 +6,16 @@ BOARDFUL.ui.Object = function (canvas, config) {
 BOARDFUL.ui.Object.prototype.init = function (canvas, config) {
 	var that = this;
 	this.canvas = canvas;
-	if (0 === $("#" + this.canvas).length) {
-		console.error("invalid html selector");
+	if (0 === $(this.canvas).length) {
+		console.error("invalid html selector", this.canvas, $(this.canvas));
 		return;
 	}
 	this.config = config || {};
-	$("#" + this.canvas).addClass(this.config.className);
+	$(this.canvas).addClass(this.config.className);
 	if (undefined !== this.config.htmlFile) {
-		$("#" + this.canvas).load(this.config.htmlFile, function () {
+		$(this.canvas).empty();
+		$(this.canvas).hide().load(this.config.htmlFile, function () {
+			$(this).fadeIn("slow");
 			that.onLoad();
 		});
 	}

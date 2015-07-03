@@ -15,10 +15,10 @@ BOARDFUL.ui.Table.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
 	if (undefined !== this.config.height) {
-		$("#" + this.canvas).css("height", this.config.height);
+		$(this.canvas).css("height", this.config.height);
 	}
 	if (undefined !== this.config.width) {
-		$("#" + this.canvas).css("width", this.config.width);
+		$(this.canvas).css("width", this.config.width);
 	}
 	if (true === this.config.droppable) {
 		$(".boardful_table").droppable({

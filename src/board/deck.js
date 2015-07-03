@@ -17,32 +17,32 @@ BOARDFUL.ui.Deck.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
 	if (undefined !== this.config.height) {
-		$("#" + this.canvas).css("height", this.config.height);
+		$(this.canvas).css("height", this.config.height);
 	}
 	if (undefined !== this.config.width) {
-		$("#" + this.canvas).css("width", this.config.width);
+		$(this.canvas).css("width", this.config.width);
 	}
 };
 BOARDFUL.ui.Deck.prototype.adjust = function (num) {
-	while ($("#" + this.canvas + " > .left > div").length > $("#" + this.canvas + " > .right > div").length + 1) {
-		var element = $("#" + this.canvas + " > .left :first-child").detach();
-		$("#" + this.canvas + " > .right").append(element);
+	while ($(this.canvas + " > .left > div").length > $(this.canvas + " > .right > div").length + 1) {
+		var element = $(this.canvas + " > .left :first-child").detach();
+		$(this.canvas + " > .right").append(element);
 	}
-	while ($("#" + this.canvas + " > .right > div").length > $("#" + this.canvas + " > .left > div").length + 1) {
-		var element = $("#" + this.canvas + " > .right :first-child").detach();
-		$("#" + this.canvas + " > .left").append(element);
+	while ($(this.canvas + " > .right > div").length > $(this.canvas + " > .left > div").length + 1) {
+		var element = $(this.canvas + " > .right :first-child").detach();
+		$(this.canvas + " > .left").append(element);
 	}
-	this.card_num = $("#" + this.canvas + " > div > div").length;
+	this.card_num = $(this.canvas + " > div > div").length;
 	if (this.card_num >= 10) {
-		$("#" + this.canvas).addClass("compact");
+		$(this.canvas).addClass("compact");
 	}
 	else {
-		$("#" + this.canvas).removeClass("compact");
+		$(this.canvas).removeClass("compact");
 	}
 };
 BOARDFUL.ui.Deck.prototype.addCards = function (num) {
 	for (var i = 0; i < num; ++ i) {
-		$("#" + this.canvas + " .left").append('<div id="' + this.card_num + '"></div>');
+		$(this.canvas + " .left").append('<div id="' + this.card_num + '"></div>');
 		var card = new BOARDFUL.ui.Card(this.card_num, {
 			height: "100%",
 			width: "20%"

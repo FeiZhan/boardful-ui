@@ -18,13 +18,13 @@ BOARDFUL.ui.List.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
 	if (undefined !== this.config.height) {
-		$("#" + this.canvas).css("height", this.config.height);
+		$(this.canvas).css("height", this.config.height);
 	}
 	if (undefined !== this.config.width) {
-		$("#" + this.canvas).css("width", this.config.width);
+		$(this.canvas).css("width", this.config.width);
 	}
 	if (undefined !== this.config.image) {
-		$("#" + that.canvas + " > .preview > img").attr("src", this.config.image);
+		$(that.canvas + " > .preview > img").attr("src", this.config.image);
 	}
 };
 BOARDFUL.ui.List.prototype.addItems = function (items) {
@@ -34,10 +34,10 @@ BOARDFUL.ui.List.prototype.addItems = function (items) {
 '<div id="' + this.items.length + '" class="item">' +
 	items[i].text +
 '</div>';
-		$("#" + this.canvas + " > .names").append(content);
-		$("#" + this.canvas + " > .names > #" + this.items.length).mouseover(function () {
+		$(this.canvas + " > .names").append(content);
+		$(this.canvas + " > .names > #" + this.items.length).mouseover(function () {
 			var id = parseInt($(this).attr("id"));
-			$("#" + that.canvas + " > .preview > img").attr("src", that.items[id].image);
+			$(that.canvas + " > .preview > img").attr("src", that.items[id].image);
 		});
 		this.items.push(items[i]);
 	}

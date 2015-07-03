@@ -1267,6 +1267,33 @@ div.box:nth-child(50) {
 	margin-top: 35px;
 	background: Blue;
 }
+.boardful_board {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+}
+.boardful_board .table0 {
+	position: absolute;
+	top: 55%;
+	left: 35%;
+}
+.boardful_board .table1 {
+	position: absolute;
+	top: 25%;
+	left: 35%;
+}
+.boardful_board .player0 {
+	position: absolute;
+	top: 60%;
+	left: 5%;
+}
+.boardful_board .player1 {
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}
 .boardful_card {
 	height: 120px;
 	width: 90px;

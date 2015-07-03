@@ -14,12 +14,12 @@ BOARDFUL.ui.Player.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
 	if (undefined !== this.config.height) {
-		$("#" + this.canvas).css("height", this.config.height);
+		$(this.canvas).css("height", this.config.height);
 	}
 	if (undefined !== this.config.width) {
-		$("#" + this.canvas).css("width", this.config.width);
+		$(this.canvas).css("width", this.config.width);
 	}
-	var deck = new BOARDFUL.ui.Deck("player_deck", {
+	var deck = new BOARDFUL.ui.Deck(this.canvas + " > .player_deck", {
 		height: "100%"
 	});
 };

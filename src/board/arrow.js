@@ -2,16 +2,18 @@ var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
 
 BOARDFUL.ui.Arrow = function (canvas, config) {
-	var that = this;
-	this.canvas = canvas;
-	this.config = config;
-	$("#" + this.canvas).addClass("boardful_arrow");
-	$("#" + this.canvas).load("src/arrow.html", function () {
-		that.onLoad();
-	});
+	config = config || {};
+	config.className = config.className || "boardful_arrow";
+	config.htmlFile = config.htmlFile || "src/board/arrow.html";
+	this.init(canvas, config);
+};
+BOARDFUL.ui.Arrow.prototype = new BOARDFUL.ui.Object;
+BOARDFUL.ui.Arrow.prototype.setTestconfig = function () {
 };
 BOARDFUL.ui.Arrow.prototype.onLoad = function () {
-	$("#" + this.canvas).css({
+	this.setTestconfig();
+	var that = this;
+	$(this.canvas).css({
 		transform: "rotate(120deg)"
 	});
 };
