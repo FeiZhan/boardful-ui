@@ -13,7 +13,7 @@ BOARDFUL.ui.Flip.prototype.setTestconfig = function () {
 	this.config.flipBackTime = this.config.flipBackTime || 1500;
 };
 BOARDFUL.ui.Flip.prototype.onLoad = function () {
-	$(this.canvas).addClass("boardful_flip");
+	$(this.canvas).addClass(this.config.className);
 	this.setTestconfig();
 };
 BOARDFUL.ui.Flip.prototype.flip = function () {

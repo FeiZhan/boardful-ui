@@ -13,6 +13,7 @@ BOARDFUL.ui.Draggable.prototype.setTestconfig = function () {
 	this.config.flip = this.config.flip || {};
 };
 BOARDFUL.ui.Draggable.prototype.onLoad = function () {
+	$(this.canvas).addClass(this.config.className);
 	this.setTestconfig();
 	var that = this;
 	$(this.canvas).draggable({
