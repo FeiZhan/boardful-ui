@@ -1,5 +1,7 @@
 var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
+var BOARDFUL = BOARDFUL || {};
+BOARDFUL.ui = BOARDFUL.ui || {};
 
 BOARDFUL.ui.Object = function (canvas, config) {
 };
@@ -12,10 +14,12 @@ BOARDFUL.ui.Object.prototype.init = function (canvas, config) {
 	}
 	this.config = config || {};
 	$(this.canvas).addClass(this.config.className);
+	this.effect_list = [];
 	if (undefined !== this.config.htmlFile) {
-		$(this.canvas).empty();
-		$(this.canvas).hide().load(this.config.htmlFile, function () {
-			$(this).fadeIn("slow");
+		$(this.canvas).hide()
+		$.get(this.config.htmlFile, function (data) {
+			$(that.canvas).append(data);
+			$(that.canvas).fadeIn("slow");
 			that.onLoad();
 		});
 	}
@@ -27,7 +31,6 @@ BOARDFUL.ui.Object.prototype.onLoad = function () {
 };
 BOARDFUL.ui.Object.prototype.destroy = function () {
 };
-
 var BOARDFUL = BOARDFUL || {};
 BOARDFUL.ui = BOARDFUL.ui || {};
 
@@ -124,16 +127,10 @@ BOARDFUL.ui.Card = function (canvas, config) {
 };
 BOARDFUL.ui.Card.prototype = new BOARDFUL.ui.Object;
 BOARDFUL.ui.Card.prototype.setTestconfig = function () {
-	this.config.height = this.config.height || "120px";
-	this.config.width = this.config.width || "90px";
 	this.config.back = this.config.back || "resources/b2fv.png";
 	this.config.text = this.config.text || "A♠";
-	this.config.topleft = this.config.topleft || "1";
-	this.config.topright = this.config.topright || "2";
-	this.config.bottomleft = this.config.bottomleft || "3";
-	this.config.bottomright = this.config.bottomright || "4";
-	this.config.hoverShowCorner = this.config.hoverShowCorner || true;
-	this.config.draggable = this.config.draggable || true;
+	this.config.cornerValue = this.config.cornerValue || {};
+	this.config.draggable = this.config.draggable || {};
 	this.config.flip = this.config.flip || false;
 	this.config.disable = this.config.disable || false;
 	this.config.hoverToDisable = this.config.hoverToDisable || false;
@@ -142,12 +139,6 @@ BOARDFUL.ui.Card.prototype.setTestconfig = function () {
 BOARDFUL.ui.Card.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
-	if (undefined !== this.config.height) {
-		$(this.canvas).css("height", this.config.height);
-	}
-	if (undefined !== this.config.width) {
-		$(this.canvas).css("width", this.config.width);
-	}
 	var front = this.config.front;
 	if (undefined !== front) {
 		$(this.canvas + " .front img").attr("src", front);
@@ -160,55 +151,11 @@ BOARDFUL.ui.Card.prototype.onLoad = function () {
 	if (undefined !== text) {
 		$(this.canvas + " .text span").html(text);
 	}
-	var topleft = this.config.topleft;
-	if (undefined !== topleft) {
-		$(this.canvas + " .topleft span").html(topleft);
+	if (undefined !== this.config.cornerValue) {
+		this.effect_list.push(new BOARDFUL.ui.CornerValue(this.canvas, this.config.cornerValue));
 	}
-	var topright = this.config.topright;
-	if (undefined !== topright) {
-		$(this.canvas + " .topright span").html(topright);
-	}
-	var bottomleft = this.config.bottomleft;
-	if (undefined !== bottomleft) {
-		$(this.canvas + " .bottomleft span").html(bottomleft);
-	}
-	var bottomright = this.config.bottomright;
-	if (undefined !== bottomright) {
-		$(this.canvas + " .bottomright span").html(bottomright);
-	}
-	if (true === this.config.hoverShowCorner) {
-		$(this.canvas).hover(function () {
-			$(that.canvas + " .value").addClass("visible");
-		}, function () {
-			$(that.canvas + " .value").removeClass("visible");
-		});
-	}
-	if (true === this.config.draggable) {
-		var interval_id = undefined;
-		$(this.canvas).draggable({
-			revert: true,
-			start: function() {
-				$(this).addClass("dragging");
-				var that = this;
-				interval_id = setInterval(function () {
-					if (! $(that).hasClass("flip")) {
-						$(that).addClass("flip");
-						setTimeout(function () {
-							if ($(that).hasClass("flip")) {
-								$(that).removeClass("flip");
-							}
-						}, 1500);
-					}
-				}, 3000);
-			},
-			drag: function() {
-			},
-			stop: function() {
-				clearInterval(interval_id);
-				$(this).removeClass("flip");
-				$(this).removeClass("dragging");
-			}
-		});
+	if (undefined !== this.config.draggable) {
+		this.effect_list.push(new BOARDFUL.ui.Draggable(this.canvas, this.config.draggable));
 	}
 	if (true === this.config.flip) {
 		$(this.canvas).addClass("flip");
@@ -477,4 +424,95 @@ BOARDFUL.ui.ValueChange.prototype.onLoad = function () {
 	setTimeout(function () {
 		$(that.canvas).addClass("vanish");
 	}, 2000);
+};
+var BOARDFUL = BOARDFUL || {};
+BOARDFUL.ui = BOARDFUL.ui || {};
+
+BOARDFUL.ui.CornerValue = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_corner_value";
+	config.htmlFile = config.htmlFile || "src/effect/corner_value.html";
+	this.init(canvas, config);
+};
+BOARDFUL.ui.CornerValue.prototype = new BOARDFUL.ui.Object;
+BOARDFUL.ui.CornerValue.prototype.setTestconfig = function () {
+	this.config.topleft = this.config.topleft || "1";
+	this.config.topright = this.config.topright || "2";
+	this.config.bottomleft = this.config.bottomleft || "3";
+	this.config.bottomright = this.config.bottomright || "4";
+	this.config.hoverShow = this.config.hoverShow || true;
+};
+BOARDFUL.ui.CornerValue.prototype.onLoad = function () {
+	this.setTestconfig();
+	var that = this;
+	var topleft = this.config.topleft;
+	if (undefined !== topleft) {
+		$(this.canvas + " .topleft span").html(topleft);
+	}
+	var topright = this.config.topright;
+	if (undefined !== topright) {
+		$(this.canvas + " .topright span").html(topright);
+	}
+	var bottomleft = this.config.bottomleft;
+	if (undefined !== bottomleft) {
+		$(this.canvas + " .bottomleft span").html(bottomleft);
+	}
+	var bottomright = this.config.bottomright;
+	if (undefined !== bottomright) {
+		$(this.canvas + " .bottomright span").html(bottomright);
+	}
+	if (true === this.config.hoverShow) {
+		$(this.canvas).hover(function () {
+			$(that.canvas + " .corner_value").addClass("visible");
+		}, function () {
+			$(that.canvas + " .corner_value").removeClass("visible");
+		});
+	}
+};
+var BOARDFUL = BOARDFUL || {};
+BOARDFUL.ui = BOARDFUL.ui || {};
+
+BOARDFUL.ui.Draggable = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_draggable";
+	config.htmlFile = config.htmlFile || "src/effect/draggable.html";
+	this.init(canvas, config);
+};
+BOARDFUL.ui.Draggable.prototype = new BOARDFUL.ui.Object;
+BOARDFUL.ui.Draggable.prototype.setTestconfig = function () {
+	this.config.revert = this.config.revert || true;
+	this.config.flip = this.config.flip || true;
+	this.config.flipTime = this.config.flipTime || 3000;
+	this.config.flipBackTime = this.config.flipBackTime || 1500;
+};
+BOARDFUL.ui.Draggable.prototype.onLoad = function () {
+	this.setTestconfig();
+	var that = this;
+	var interval_id = undefined;
+	$(this.canvas).draggable({
+		revert: that.config.revert,
+		start: function() {
+			$(this).addClass("dragging");
+			var that1 = this;
+			if (true === that.config.flip) {
+				interval_id = setInterval(function () {
+					if (! $(that1).hasClass("flip")) {
+						$(that1).addClass("flip");
+						setTimeout(function () {
+							if ($(that1).hasClass("flip")) {
+								$(that1).removeClass("flip");
+							}
+						}, that.config.flipBackTime);
+					}
+				}, that.config.flipTime);
+			}
+		},
+		drag: function() {
+		},
+		stop: function() {
+			clearInterval(interval_id);
+			$(this).removeClass("flip");
+			$(this).removeClass("dragging");
+		}
+	});
 };

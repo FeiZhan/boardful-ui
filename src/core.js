@@ -1,0 +1,2 @@
+var BOARDFUL = BOARDFUL || {};
+BOARDFUL.ui = BOARDFUL.ui || {};

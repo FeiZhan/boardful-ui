@@ -12,10 +12,12 @@ BOARDFUL.ui.Object.prototype.init = function (canvas, config) {
 	}
 	this.config = config || {};
 	$(this.canvas).addClass(this.config.className);
+	this.effect_list = [];
 	if (undefined !== this.config.htmlFile) {
-		$(this.canvas).empty();
-		$(this.canvas).hide().load(this.config.htmlFile, function () {
-			$(this).fadeIn("slow");
+		$(this.canvas).hide()
+		$.get(this.config.htmlFile, function (data) {
+			$(that.canvas).append(data);
+			$(that.canvas).fadeIn("slow");
 			that.onLoad();
 		});
 	}

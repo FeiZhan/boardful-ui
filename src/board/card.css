@@ -2,16 +2,20 @@
 	height: 120px;
 	width: 90px;
 	position: absolute;
+}
+.boardful_card > .card {
+	height: 100%;
+	width: 100%;
+	position: absolute;
 
 	border: thin solid Grey;
 	border-radius: 10px;
 	box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.4);
-	cursor: grab;
-	cursor: -webkit-grab;
-	cursor:-moz-grab;
+
 	transition: transform 1s;
 }
-.boardful_card > .face {
+
+.boardful_card > .card > .face {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -23,7 +27,7 @@
 	backface-visibility: hidden;
 	transition: transform 1s;
 }
-.boardful_card > .face > img {
+.boardful_card > .card > .face > img {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -33,10 +37,11 @@
 	overflow: hidden;
 	border-radius: 10px;
 }
-.boardful_card > .back {
+.boardful_card > .card > .back {
 	transform: rotateY(-180deg);
 }
-.boardful_card > .text {
+
+.boardful_card > .card > .text {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -48,80 +53,30 @@
 	overflow: hidden;
 	line-height: 100px;
 }
-.boardful_card > .text > span {
+.boardful_card > .card > .text > span {
 	display: inline-block;
 	line-height: normal;
 	vertical-align: middle;
 	text-align: center;
 	font-size: xx-large;
 }
-.boardful_card > .value {
-	height: 30%;
-	width: 40%;
-	position: absolute;
 
-	border-radius: 50%;
-	line-height: 30px;
-	vertical-align: middle;
-	text-align: center;
-	opacity: 0;
-	transition: opacity .25s ease-in-out;
-}
-.boardful_card > .value > span {
-	color: Black;
-	display: inline-block;
-	line-height: normal;
-	vertical-align: middle;
-	text-align: center;
-}
-.boardful_card > .topleft {
-	top: -10%;
-	left: -15%;
-
-	background-color: Red;
-}
-.boardful_card > .topright {
-	top: -10%;
-	right: -15%;
-
-	background-color: Blue;
-}
-.boardful_card > .bottomleft {
-	bottom: -10%;
-	left: -15%;
-
-	background-color: Yellow;
-}
-.boardful_card > .bottomright {
-	bottom: -10%;
-	right: -15%;
-
-	background-color: Grey;
-}
-
-.boardful_card.dragging {
-	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-
-	cursor: grabbing;
-	cursor: -webkit-grabbing;
-	cursor:-moz-grabbing;
-}
-.boardful_card.flip {
+.boardful_card > .card.flip {
 	transform: rotateY(-180deg);
 }
-.boardful_card.flip > .front {
+.boardful_card > .card.flip > .front {
 	transform: rotateY(-180deg);
 }
-.boardful_card.flip > .back {
+.boardful_card > .card.flip > .back {
 	transform: rotateY(0);
 }
-.boardful_card.flip > .text {
+.boardful_card > .card.flip > .text {
 	visibility: hidden;
 }
-.boardful_card.flip > .value {
+.boardful_card > .card.flip > .value {
 	visibility: hidden;
 }
-.boardful_card.disable > .fog {
+.boardful_card > .card.disable > .fog {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -131,8 +86,5 @@
 	z-index: 1;
 	border-radius: 10px;
 }
-.boardful_card.focus {
-}
-.boardful_card > .value.visible {
-	opacity: 1;
+.boardful_card > .card.focus {
 }
