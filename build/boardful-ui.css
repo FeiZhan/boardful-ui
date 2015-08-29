@@ -1298,11 +1298,6 @@ div.box:nth-child(50) {
 	height: 120px;
 	width: 90px;
 	position: absolute;
-}
-.boardful_card > .card {
-	height: 100%;
-	width: 100%;
-	position: absolute;
 
 	border: thin solid Grey;
 	border-radius: 10px;
@@ -1311,7 +1306,7 @@ div.box:nth-child(50) {
 	transition: transform 1s;
 }
 
-.boardful_card > .card > .face {
+.boardful_card > .face {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -1323,7 +1318,7 @@ div.box:nth-child(50) {
 	backface-visibility: hidden;
 	transition: transform 1s;
 }
-.boardful_card > .card > .face > img {
+.boardful_card > .face > img {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -1333,11 +1328,10 @@ div.box:nth-child(50) {
 	overflow: hidden;
 	border-radius: 10px;
 }
-.boardful_card > .card > .back {
+.boardful_card > .back {
 	transform: rotateY(-180deg);
 }
-
-.boardful_card > .card > .text {
+.boardful_card > .text {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -1349,7 +1343,7 @@ div.box:nth-child(50) {
 	overflow: hidden;
 	line-height: 100px;
 }
-.boardful_card > .card > .text > span {
+.boardful_card  > .text > span {
 	display: inline-block;
 	line-height: normal;
 	vertical-align: middle;
@@ -1357,32 +1351,7 @@ div.box:nth-child(50) {
 	font-size: xx-large;
 }
 
-.boardful_card > .card.flip {
-	transform: rotateY(-180deg);
-}
-.boardful_card > .card.flip > .front {
-	transform: rotateY(-180deg);
-}
-.boardful_card > .card.flip > .back {
-	transform: rotateY(0);
-}
-.boardful_card > .card.flip > .text {
-	visibility: hidden;
-}
-.boardful_card > .card.flip > .value {
-	visibility: hidden;
-}
-.boardful_card > .card.disable > .fog {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-
-	background-color: Black;
-	opacity: 0.5;
-	z-index: 1;
-	border-radius: 10px;
-}
-.boardful_card > .card.focus {
+.boardful_card.focus {
 }
 .boardful_deck {
 	height: 20%;
@@ -1608,8 +1577,6 @@ div.box:nth-child(50) {
 	color: Red;
 }
 .boardful_corner_value {
-}
-.boardful_corner_value > .corner_value {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -1617,7 +1584,7 @@ div.box:nth-child(50) {
 	opacity: 0;
 	transition: opacity .25s ease-in-out;
 }
-.boardful_corner_value > .corner_value > div {
+.boardful_corner_value > div {
 	height: 30%;
 	width: 40%;
 	position: absolute;
@@ -1627,7 +1594,7 @@ div.box:nth-child(50) {
 	vertical-align: middle;
 	text-align: center;
 }
-.boardful_corner_value > .corner_value > div > span {
+.boardful_corner_value > div > span {
 	color: White;
 	text-shadow: 2px 2px 3px Black;
 
@@ -1636,32 +1603,32 @@ div.box:nth-child(50) {
 	vertical-align: middle;
 	text-align: center;
 }
-.boardful_corner_value > .corner_value > .topleft {
+.boardful_corner_value > .topleft {
 	top: -10%;
 	left: -15%;
 
 	background-color: Red;
 }
-.boardful_corner_value > .corner_value > .topright {
+.boardful_corner_value > .topright {
 	top: -10%;
 	right: -15%;
 
 	background-color: Blue;
 }
-.boardful_corner_value > .corner_value > .bottomleft {
+.boardful_corner_value > .bottomleft {
 	bottom: -10%;
 	left: -15%;
 
 	background-color: Yellow;
 }
-.boardful_corner_value > .corner_value > .bottomright {
+.boardful_corner_value > .bottomright {
 	bottom: -10%;
 	right: -15%;
 
 	background-color: Grey;
 }
 
-.boardful_corner_value > .corner_value.visible {
+.boardful_corner_value.visible {
 	opacity: 1;
 }
 .boardful_draggable {
@@ -1676,6 +1643,31 @@ div.box:nth-child(50) {
 	cursor: -webkit-grabbing;
 	cursor:-moz-grabbing;
 }
-.boardful_round {
-	
+.boardful_flip {
+}
+.boardful_flip > .flipping {
+	transform: rotateY(-180deg);
+}
+.boardful_flip > .flipping > .front {
+	transform: rotateY(-180deg);
+}
+.boardful_flip > .flipping > .back {
+	transform: rotateY(0);
+}
+.boardful_flip > .flipping > .text {
+	visibility: hidden;
+}
+.boardful_fog {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+	background-color: Black;
+	opacity: 0;
+	z-index: -1;
+	border-radius: 10px;
+}
+.boardful_fog.visible {
+	z-index: 1;
+	opacity: 0.5;
 }

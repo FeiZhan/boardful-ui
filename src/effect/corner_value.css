@@ -1,6 +1,4 @@
 .boardful_corner_value {
-}
-.boardful_corner_value > .corner_value {
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -8,7 +6,7 @@
 	opacity: 0;
 	transition: opacity .25s ease-in-out;
 }
-.boardful_corner_value > .corner_value > div {
+.boardful_corner_value > div {
 	height: 30%;
 	width: 40%;
 	position: absolute;
@@ -18,7 +16,7 @@
 	vertical-align: middle;
 	text-align: center;
 }
-.boardful_corner_value > .corner_value > div > span {
+.boardful_corner_value > div > span {
 	color: White;
 	text-shadow: 2px 2px 3px Black;
 
@@ -27,31 +25,31 @@
 	vertical-align: middle;
 	text-align: center;
 }
-.boardful_corner_value > .corner_value > .topleft {
+.boardful_corner_value > .topleft {
 	top: -10%;
 	left: -15%;
 
 	background-color: Red;
 }
-.boardful_corner_value > .corner_value > .topright {
+.boardful_corner_value > .topright {
 	top: -10%;
 	right: -15%;
 
 	background-color: Blue;
 }
-.boardful_corner_value > .corner_value > .bottomleft {
+.boardful_corner_value > .bottomleft {
 	bottom: -10%;
 	left: -15%;
 
 	background-color: Yellow;
 }
-.boardful_corner_value > .corner_value > .bottomright {
+.boardful_corner_value > .bottomright {
 	bottom: -10%;
 	right: -15%;
 
 	background-color: Grey;
 }
 
-.boardful_corner_value > .corner_value.visible {
+.boardful_corner_value.visible {
 	opacity: 1;
 }

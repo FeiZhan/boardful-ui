@@ -20,25 +20,25 @@ BOARDFUL.ui.CornerValue.prototype.onLoad = function () {
 	var that = this;
 	var topleft = this.config.topleft;
 	if (undefined !== topleft) {
-		$(this.canvas + " .topleft span").html(topleft);
+		$(this.selector + " > .topleft span").html(topleft);
 	}
 	var topright = this.config.topright;
 	if (undefined !== topright) {
-		$(this.canvas + " .topright span").html(topright);
+		$(this.selector + " > .topright span").html(topright);
 	}
 	var bottomleft = this.config.bottomleft;
 	if (undefined !== bottomleft) {
-		$(this.canvas + " .bottomleft span").html(bottomleft);
+		$(this.selector + " > .bottomleft span").html(bottomleft);
 	}
 	var bottomright = this.config.bottomright;
 	if (undefined !== bottomright) {
-		$(this.canvas + " .bottomright span").html(bottomright);
+		$(this.selector + " > .bottomright span").html(bottomright);
 	}
 	if (true === this.config.hoverShow) {
-		$(this.canvas).hover(function () {
-			$(that.canvas + " .corner_value").addClass("visible");
+		$(this.selector).hover(function () {
+			$(that.selector).addClass("visible");
 		}, function () {
-			$(that.canvas + " .corner_value").removeClass("visible");
+			$(that.selector).removeClass("visible");
 		});
 	}
 };

@@ -7,19 +7,19 @@ BOARDFUL.ui.Object = function (canvas, config) {
 };
 BOARDFUL.ui.Object.prototype.init = function (canvas, config) {
 	var that = this;
-	this.canvas = canvas;
-	if (0 === $(this.canvas).length) {
-		console.error("invalid html selector", this.canvas, $(this.canvas));
+	if (0 === $(canvas).length) {
+		console.error("invalid html selector", canvas, $(canvas));
 		return;
 	}
+	this.canvas = canvas;
 	this.config = config || {};
-	$(this.canvas).addClass(this.config.className);
+	this.selector = this.selector || this.canvas + " > ." + this.config.className;
 	this.effect_list = [];
 	if (undefined !== this.config.htmlFile) {
-		$(this.canvas).hide()
 		$.get(this.config.htmlFile, function (data) {
 			$(that.canvas).append(data);
-			$(that.canvas).fadeIn("slow");
+			$(this.selector).hide();
+			$(this.selector).fadeIn("slow");
 			that.onLoad();
 		});
 	}
@@ -131,25 +131,25 @@ BOARDFUL.ui.Card.prototype.setTestconfig = function () {
 	this.config.text = this.config.text || "A♠";
 	this.config.cornerValue = this.config.cornerValue || {};
 	this.config.draggable = this.config.draggable || {};
-	this.config.flip = this.config.flip || false;
 	this.config.disable = this.config.disable || false;
 	this.config.hoverToDisable = this.config.hoverToDisable || false;
-	this.config.clickToFlip = this.config.clickToFlip || true;
+	this.config.flip = this.config.flip || false;
+	this.config.clickToFlip = this.config.clickToFlip || false;
 };
 BOARDFUL.ui.Card.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
 	var front = this.config.front;
 	if (undefined !== front) {
-		$(this.canvas + " .front img").attr("src", front);
+		$(this.selector + " > .front img").attr("src", front);
 	}
 	var back = this.config.back;
 	if (undefined !== back) {
-		$(this.canvas + " .back img").attr("src", back);
+		$(this.selector + " > .back img").attr("src", back);
 	}
 	var text = this.config.text;
 	if (undefined !== text) {
-		$(this.canvas + " .text span").html(text);
+		$(this.selector + " > .text span").html(text);
 	}
 	if (undefined !== this.config.cornerValue) {
 		this.effect_list.push(new BOARDFUL.ui.CornerValue(this.canvas, this.config.cornerValue));
@@ -157,22 +157,32 @@ BOARDFUL.ui.Card.prototype.onLoad = function () {
 	if (undefined !== this.config.draggable) {
 		this.effect_list.push(new BOARDFUL.ui.Draggable(this.canvas, this.config.draggable));
 	}
-	if (true === this.config.flip) {
-		$(this.canvas).addClass("flip");
-	}
 	if (true === this.config.disable) {
-		$(this.canvas).addClass("disable");
+		this.fog = this.fog || new BOARDFUL.ui.Fog(this.canvas);
+		this.effect_list.push(this.fog);
+		setTimeout(function () {
+			that.fog.enable();
+		}, 500);
 	}
 	if (true === this.config.hoverToDisable) {
+		this.fog = this.fog || new BOARDFUL.ui.Fog(this.canvas);
+		this.effect_list.push(this.fog);
 		$(this.canvas).hover(function () {
-			$(that.canvas).addClass("disable");
+			that.fog.enable();
 		}, function () {
-			$(that.canvas).removeClass("disable");
+			that.fog.disable();
 		});
 	}
+	if (true === this.config.flip) {
+		this.flip = this.flip || new BOARDFUL.ui.Flip(this.canvas);
+		this.effect_list.push(this.flip);
+		this.flip.flip();
+	}
 	if (true === this.config.clickToFlip) {
+		this.flip = this.flip || new BOARDFUL.ui.Flip(this.canvas);
+		this.effect_list.push(this.flip);
 		$(this.canvas).click(function () {
-			$(that.canvas).toggleClass("flip");
+			that.flip.flip();
 		});
 	}
 };
@@ -447,25 +457,25 @@ BOARDFUL.ui.CornerValue.prototype.onLoad = function () {
 	var that = this;
 	var topleft = this.config.topleft;
 	if (undefined !== topleft) {
-		$(this.canvas + " .topleft span").html(topleft);
+		$(this.selector + " > .topleft span").html(topleft);
 	}
 	var topright = this.config.topright;
 	if (undefined !== topright) {
-		$(this.canvas + " .topright span").html(topright);
+		$(this.selector + " > .topright span").html(topright);
 	}
 	var bottomleft = this.config.bottomleft;
 	if (undefined !== bottomleft) {
-		$(this.canvas + " .bottomleft span").html(bottomleft);
+		$(this.selector + " > .bottomleft span").html(bottomleft);
 	}
 	var bottomright = this.config.bottomright;
 	if (undefined !== bottomright) {
-		$(this.canvas + " .bottomright span").html(bottomright);
+		$(this.selector + " > .bottomright span").html(bottomright);
 	}
 	if (true === this.config.hoverShow) {
-		$(this.canvas).hover(function () {
-			$(that.canvas + " .corner_value").addClass("visible");
+		$(this.selector).hover(function () {
+			$(that.selector).addClass("visible");
 		}, function () {
-			$(that.canvas + " .corner_value").removeClass("visible");
+			$(that.selector).removeClass("visible");
 		});
 	}
 };
@@ -481,38 +491,86 @@ BOARDFUL.ui.Draggable = function (canvas, config) {
 BOARDFUL.ui.Draggable.prototype = new BOARDFUL.ui.Object;
 BOARDFUL.ui.Draggable.prototype.setTestconfig = function () {
 	this.config.revert = this.config.revert || true;
-	this.config.flip = this.config.flip || true;
-	this.config.flipTime = this.config.flipTime || 3000;
-	this.config.flipBackTime = this.config.flipBackTime || 1500;
+	this.config.flip = this.config.flip || {};
 };
 BOARDFUL.ui.Draggable.prototype.onLoad = function () {
 	this.setTestconfig();
 	var that = this;
-	var interval_id = undefined;
 	$(this.canvas).draggable({
 		revert: that.config.revert,
 		start: function() {
 			$(this).addClass("dragging");
-			var that1 = this;
-			if (true === that.config.flip) {
-				interval_id = setInterval(function () {
-					if (! $(that1).hasClass("flip")) {
-						$(that1).addClass("flip");
-						setTimeout(function () {
-							if ($(that1).hasClass("flip")) {
-								$(that1).removeClass("flip");
-							}
-						}, that.config.flipBackTime);
-					}
-				}, that.config.flipTime);
-			}
+			flip.begin();
 		},
 		drag: function() {
 		},
 		stop: function() {
-			clearInterval(interval_id);
-			$(this).removeClass("flip");
 			$(this).removeClass("dragging");
+			flip.stop();
 		}
 	});
+	var flip;
+	if (undefined !== this.config.flip) {
+		flip = new BOARDFUL.ui.Flip(this.canvas, this.config.flip);
+		this.effect_list.push(flip);
+	}
+};
+var BOARDFUL = BOARDFUL || {};
+BOARDFUL.ui = BOARDFUL.ui || {};
+
+BOARDFUL.ui.Flip = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_flip";
+	config.htmlFile = config.htmlFile || "src/effect/flip.html";
+	this.init(canvas, config);
+};
+BOARDFUL.ui.Flip.prototype = new BOARDFUL.ui.Object;
+BOARDFUL.ui.Flip.prototype.setTestconfig = function () {
+	this.config.flipTime = this.config.flipTime || 3000;
+	this.config.flipBackTime = this.config.flipBackTime || 1500;
+};
+BOARDFUL.ui.Flip.prototype.onLoad = function () {
+	$(this.canvas).addClass("boardful_flip");
+	this.setTestconfig();
+};
+BOARDFUL.ui.Flip.prototype.flip = function () {
+	$(this.canvas + " > .boardful_card").toggleClass("flipping");
+};
+BOARDFUL.ui.Flip.prototype.begin = function () {
+	var that = this;
+	this.interval_id = setInterval(function () {
+		if (! $(that.canvas + " > .boardful_card").hasClass("flipping")) {
+			$(that.canvas + " > .boardful_card").addClass("flipping");
+			setTimeout(function () {
+				if ($(that.canvas + " > .boardful_card").hasClass("flipping")) {
+					$(that.canvas + " > .boardful_card").removeClass("flipping");
+				}
+			}, that.config.flipBackTime);
+		}
+	}, that.config.flipTime);
+};
+BOARDFUL.ui.Flip.prototype.stop = function () {
+	clearInterval(this.interval_id);
+	$(this.canvas + " > .boardful_card").removeClass("flipping");
+};
+var BOARDFUL = BOARDFUL || {};
+BOARDFUL.ui = BOARDFUL.ui || {};
+
+BOARDFUL.ui.Fog = function (canvas, config) {
+	config = config || {};
+	config.className = config.className || "boardful_fog";
+	config.htmlFile = config.htmlFile || "src/effect/fog.html";
+	this.init(canvas, config);
+};
+BOARDFUL.ui.Fog.prototype = new BOARDFUL.ui.Object;
+BOARDFUL.ui.Fog.prototype.setTestconfig = function () {
+};
+BOARDFUL.ui.Fog.prototype.onLoad = function () {
+	this.setTestconfig();
+};
+BOARDFUL.ui.Fog.prototype.enable = function () {
+	$(this.selector).addClass("visible");
+};
+BOARDFUL.ui.Fog.prototype.disable = function () {
+	$(this.selector).removeClass("visible");
 };

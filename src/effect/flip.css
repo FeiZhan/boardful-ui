@@ -1,0 +1,14 @@
+.boardful_flip {
+}
+.boardful_flip > .flipping {
+	transform: rotateY(-180deg);
+}
+.boardful_flip > .flipping > .front {
+	transform: rotateY(-180deg);
+}
+.boardful_flip > .flipping > .back {
+	transform: rotateY(0);
+}
+.boardful_flip > .flipping > .text {
+	visibility: hidden;
+}
